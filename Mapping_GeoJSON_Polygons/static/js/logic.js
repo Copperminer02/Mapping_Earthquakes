@@ -70,7 +70,7 @@ let baseMaps = {
 let map = L.map('mapid', {
   center: [43.7, -79.3],
   zoom: 11,
-  layers: [satelliteStreets]
+  layers: [streets]
 })
 
 // Pass our map layers into our layers control and add the layers control to the map.
@@ -79,9 +79,23 @@ L.control.layers(baseMaps).addTo(map);
 // Accessing the airport GeoJSON URL
 let torontoHoods = "https://raw.githubusercontent.com/Copperminer02/Mapping_Earthquakes/Mapping_GeoJSON_ploygons/torontoNeighborhoods.json";
 
+// Create a style for the lines.
+let myStyle = {
+  color: "#ffffa1",
+  fillColor: "yellow",
+  weight: 2
+}
+
 // Grabbing our GeoJSON data.
 d3.json(torontoHoods).then(function(data) {
+  
   console.log(data);
   
 // Creating a GeoJSON layer with the retrieved data.
-  L.geoJSON(data).addTo(map);});
+  L.geoJSON(data, {
+    style: myStyle,
+    onEachFeature: function(feature, layer) {
+      console.log(layer);
+      layer.bindPopup("<h2> Neighborhood: "+feature.properties.AREA_NAME +"</h2>");
+    }
+  }).addTo(map);});
