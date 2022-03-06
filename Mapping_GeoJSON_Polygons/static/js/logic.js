@@ -77,7 +77,7 @@ let map = L.map('mapid', {
 L.control.layers(baseMaps).addTo(map);
 
 // Accessing the airport GeoJSON URL
-let torontoData = "https://raw.githubusercontent.com/Copperminer02/Mapping_Earthquakes/Mapping_GeoJSON_linestrings/torontoRoutes.json";
+let torontoData = "https://raw.githubusercontent.com/Copperminer02/Mapping_Earthquakes/Mapping_GeoJSON_ploygons/torontoRoutes.json";
 
 // Create a style for the lines.
 let myStyle = {
